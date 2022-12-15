@@ -12,11 +12,11 @@ public class LeetCode_27 {
      */
     //双指针
     public int removeElementMethodOne(int[] nums, int val) {
-        //慢指针，指向更新 新数组下标的位置
+        //慢指针，从左到右更新数组的元素
         int slow = 0;
-        //快指针，寻找新数组的元素 ，新数组就是不含有目标元素的数组
+        //快指针，寻找不含有目标元素的元素
         for (int fast = 0; fast < nums.length; fast++) {
-            //当快指针所指的数不等于val的时候，将fast指针所指的值赋值给slow指针
+            //当快指针所指的数不等于val的时候(找到了)，将fast指针所指的值赋值给slow指针（更新slow指针的值）
             if (nums[fast] != val) {
                 nums[slow] = nums[fast];
                 slow++;
