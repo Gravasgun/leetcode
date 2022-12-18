@@ -1,4 +1,4 @@
-package sort;
+package leetcode.arrayList.sort;
 
 public class BubbleSort {
     public static int[] bubble_sort(int[] arr) {

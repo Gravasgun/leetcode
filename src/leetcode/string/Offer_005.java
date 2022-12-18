@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.string;
 
 public class Offer_005 {
     /**

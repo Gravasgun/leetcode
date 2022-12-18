@@ -1,4 +1,4 @@
-package sort;
+package leetcode.arrayList.sort;
 
 public class InsertionSort {
     public static int[] insert_sort(int[] nums) {

@@ -1,4 +1,4 @@
-package sort;
+package leetcode.arrayList.sort;
 
 /**
  * —°‘Ò≈≈–Ú
