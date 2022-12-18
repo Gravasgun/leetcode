@@ -1,4 +1,4 @@
-package leetcode.binarySearch;
+package leetcode.arrayList.binarySearch;
 
 public class LeetCode_34 {
     /**

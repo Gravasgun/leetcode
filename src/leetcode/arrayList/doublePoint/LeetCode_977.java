@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.arrayList.doublePoint;
 
 import java.util.Arrays;
 

@@ -1,4 +1,4 @@
-package leetcode.doublePoint;
+package leetcode.arrayList.doublePoint;
 
 import org.junit.Test;
 

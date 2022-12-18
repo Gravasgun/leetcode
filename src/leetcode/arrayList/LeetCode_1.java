@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.arrayList;
 
 public class LeetCode_1 {
     /**

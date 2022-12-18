@@ -1,4 +1,4 @@
-package leetcode.doublePoint;
+package leetcode.arrayList.doublePoint;
 
 public class LeetCode_27 {
     /**

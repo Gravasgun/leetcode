@@ -1,6 +1,4 @@
-package leetcode.doublePoint;
-
-import org.junit.Test;
+package leetcode.arrayList.doublePoint;
 
 public class LeetCode_209 {
     /**
@@ -29,7 +27,7 @@ public class LeetCode_209 {
                 //一旦发现子序列和超过了target，更新result
                 if (sum >= target) {
                     subLength = j - i + 1;
-                    result = result < subLength ? result : subLength;
+                    result = Math.min(result,subLength);
                     break;
                 }
             }
@@ -58,6 +56,4 @@ public class LeetCode_209 {
         }
         return result == Integer.MAX_VALUE ? 0 : result;
     }
-
-
 }

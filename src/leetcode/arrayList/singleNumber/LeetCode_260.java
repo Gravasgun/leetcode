@@ -1,4 +1,4 @@
-package leetcode.singleNumber;
+package leetcode.arrayList.singleNumber;
 
 import java.util.HashMap;
 import java.util.Map;
