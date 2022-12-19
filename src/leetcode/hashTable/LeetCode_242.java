@@ -18,6 +18,7 @@ public class LeetCode_242 {
         //定义一个数组，来记录字符串s里字符出现的次数。
         int[] arr = new int[26];
         //0~25对应字母a~z
+        //假设第一个字母是a，那么s.charAt(i) - 'a'=0，arr[0]++,就记录了a在字符串中出现的次数
         for (int i = 0; i < s.length(); i++) {
             arr[s.charAt(i) - 'a']++;
             arr[t.charAt(i) - 'a']--;
