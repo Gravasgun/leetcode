@@ -68,4 +68,21 @@ public class LeetCode_206 {
         }
         return pre;
     }
+
+    //方法三：递归(也是双指针的思路)
+    public ListNode reverseListMethodThree(ListNode head) {
+        return reverseLinkedList(null, head);
+    }
+
+    public ListNode reverseLinkedList(ListNode pre, ListNode temp) {
+        if (temp == null) {
+            return pre;
+        }
+        //记录下一个节点的位置
+        ListNode next = temp.next;
+        //反转
+        temp.next = pre;
+        //移位的同时递归
+        return reverseLinkedList(temp, next);
+    }
 }
