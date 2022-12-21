@@ -16,7 +16,7 @@ public class LeetCode_242 {
      * @param t
      * @return
      */
-    public boolean isAnagram(String s, String t) {
+    public boolean isAnagramMethodOne(String s, String t) {
         //判断两个字符串长度是否相等，不相等则直接返回false
         if (s.length() != t.length()) {
             return false;
