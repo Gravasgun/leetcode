@@ -61,9 +61,13 @@ public class LeetCode_206 {
         ListNode pre = null;
         ListNode temp = head;
         while (temp != null) {
+            //记录下一个节点
             ListNode next = temp.next;
+            //反转
             temp.next = pre;
+            //移位
             pre = temp;
+            //移位
             temp = next;
         }
         return pre;
