@@ -1,5 +1,11 @@
 package leetcode.hashTable;
 
+import org.junit.Test;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+
 public class LeetCode_242 {
     /**
      * 242.有效的字母异位词
@@ -30,6 +36,44 @@ public class LeetCode_242 {
             }
         }
         //数组所有元素都为零0，说明字符串s和t是字母异位词
+        return true;
+    }
+
+    public boolean isAnagramMethodTwo(String s, String t) {
+        //判断两个字符串长度是否相等，不相等则直接返回false
+        if (s.length() != t.length()) {
+            return false;
+        }
+
+        Map<Character, Integer> map = new HashMap<>();
+        //遍历s的所有字符，将s的每一个字符作为key，每一个字符出现的次数作为value，放入map
+        for (Character c : s.toCharArray()) {
+            if (!map.containsKey(c)) {
+                map.put(c, 1);
+            } else {
+                map.put(c, map.get(c) + 1);
+            }
+        }
+
+        //遍历t的所有字符
+        for (Character c : t.toCharArray()) {
+            //如果map中不包含t中的任意一个字符，返回false
+            if (!map.containsKey(c)) {
+                return false;
+            } else {
+                //如果包含了，则把该字符的次数-1
+                map.put(c, map.get(c) - 1);
+            }
+        }
+
+        //遍历map
+        Set<Map.Entry<Character, Integer>> entrySet = map.entrySet();
+        for (Map.Entry<Character, Integer> entry : entrySet) {
+            //只要map中的value有一个不等于0，说明s和t是两个不一样的字符
+            if (entry.getValue() != 0) {
+                return false;
+            }
+        }
         return true;
     }
 }
