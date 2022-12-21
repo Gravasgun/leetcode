@@ -27,7 +27,8 @@ public class LeetCode_206 {
      * @param head
      * @return
      */
-    public ListNode reverseList(ListNode head) {
+    //方法一：栈
+    public ListNode reverseListMethodOne(ListNode head) {
         if (head == null) {
             return null;
         }
@@ -50,5 +51,21 @@ public class LeetCode_206 {
         //将最后一个节点的next指向null，不然可能会出现环
         temp.next = null;
         return first;
+    }
+
+    //方法二：双指针
+    public ListNode reverseListMethodTwo(ListNode head) {
+        if (head == null) {
+            return null;
+        }
+        ListNode pre = null;
+        ListNode temp = head;
+        while (temp != null) {
+            ListNode next = temp.next;
+            temp.next = pre;
+            pre = temp;
+            temp = next;
+        }
+        return pre;
     }
 }
