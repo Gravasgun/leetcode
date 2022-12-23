@@ -1,5 +1,7 @@
 package leetcode.string;
 
+import java.util.Stack;
+
 public class LeetCode_344 {
     /**
      * 344.反转字符串
@@ -10,7 +12,7 @@ public class LeetCode_344 {
      */
 
     //方法一：双指针
-    public void reverseString(char[] s) {
+    public void reverseStringMethodOne(char[] s) {
         int left = 0;
         int right = s.length - 1;
         while (left < right) {
@@ -22,4 +24,16 @@ public class LeetCode_344 {
         }
     }
 
+    //方法二：栈
+    public void reverseString(char[] s) {
+        Stack<Character> stack = new Stack<>();
+        //入栈
+        for (char c : s) {
+            stack.push(c);
+        }
+        //出栈
+        for (int i = 0; i < s.length; i++) {
+            s[i] = stack.pop();
+        }
+    }
 }
