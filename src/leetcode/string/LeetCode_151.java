@@ -25,6 +25,7 @@ public class LeetCode_151 {
     //单词反转
     public void reverseEachWord(char[] chars) {
         int startIndex = 0;
+        //这里的=，是为了让endIndex永远指向单词末的尾后一个位置，这样 reverse 的实参更好设置
         for (int endIndex = 0; endIndex <= chars.length; endIndex++) {
             if (endIndex == chars.length || chars[endIndex] == ' ') {
                 reverse(chars, startIndex, endIndex - 1);
@@ -65,7 +66,7 @@ public class LeetCode_151 {
             }
         }
         char[] newChars = new char[slow];
-        //将chars数组复制到新的char数组
+        //复制数组中的元素
         for (int i = 0; i < slow; i++) {
             newChars[i] = chars[i];
         }
