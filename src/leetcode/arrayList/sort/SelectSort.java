@@ -24,12 +24,11 @@ public class SelectSort {
         arr[num2] = temp;
     }
 
-
     public static void main(String[] args) {
         int[] nums = new int[]{1, 10, 6, 8, 7, 55, 99, 44, 63, 78};
         int[] numArr = select_sort(nums);
         for (int num : numArr) {
-            System.out.print(num+" ");
+            System.out.print(num + " ");
         }
     }
 }
