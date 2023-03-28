@@ -1,6 +1,8 @@
 package leetcode.arrayList.singleNumber;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 public class LeetCode_136 {
@@ -35,6 +37,42 @@ public class LeetCode_136 {
             temp ^= num;
         }
         return temp;
+    }
+
+    //方法三：与法一相同的思路，只不过调用了不同的api
+    public int singleNumberMethodThree(int[] nums) {
+        Set<Integer> set = new HashSet<>();
+        for (int num : nums) {
+            if (set.contains(num)) {
+                set.remove(num);
+            } else {
+                set.add(num);
+            }
+        }
+        return (int) set.toArray()[0];
+    }
+
+    //方法四：HashMap，数字作为map的key，数字出现的次数作为map的value。最后遍历map，找出次数为一的数字。
+    public int singleNumberMethodFour(int[] nums) {
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int num : nums) {
+            if (map.get(num) == null) {
+                map.put(num, 1);
+            } else {
+                int count = map.get(num);
+                map.put(num, ++count);
+            }
+        }
+        int result = 0;
+        Set<Map.Entry<Integer, Integer>> entrySet = map.entrySet();
+        //遍历map，寻找value=1的key
+        for (Map.Entry<Integer, Integer> entry : entrySet) {
+            if (entry.getValue() == 1) {
+                result = entry.getKey();
+                break;
+            }
+        }
+        return result;
     }
 }
 

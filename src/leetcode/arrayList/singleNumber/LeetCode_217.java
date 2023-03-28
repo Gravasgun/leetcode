@@ -40,5 +40,4 @@ public class LeetCode_217 {
         }
         return false;
     }
-
 }

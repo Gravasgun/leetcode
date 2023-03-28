@@ -1,6 +1,7 @@
 package leetcode.arrayList.singleNumber;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -61,5 +62,19 @@ public class LeetCode_260 {
         //type2=a^b^a=b(type1=a的情况) || type2=a^b^b=a(type1=b的情况)
         type2 = num1 ^ type1;
         return new int[]{type1, type2};
+    }
+
+    //方法三：hashSet
+    public int[] twoSingleNumberMethodThree(int[] nums) {
+        Set<Integer> set = new HashSet<>();
+        for (int num : nums) {
+            if (set.contains(num)) {
+                set.remove(num);
+            } else {
+                set.add(num);
+            }
+        }
+        Object[] objects = set.toArray();
+        return new int[]{(int) objects[0], (int) objects[1]};
     }
 }
