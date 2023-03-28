@@ -22,26 +22,25 @@ public class LeetCode_1721 {
         }
     }
 
-    class Solution {
-        public ListNode swapNodes(ListNode head, int k) {
-            ListNode left = head;//正数第k个节点
-            ListNode right = head;//倒数第k个节点
-            //利用循环找到正数第k个节点
-            for (int i = 1; i < k; i++) {
-                left = left.next;
-            }
-            //定义另一个变量current保存left指针，因为不能移动left指针
-            ListNode current = left;
-            //让两个指针一起移动，当正数第k个指针移动到链表末尾时，right指针刚好移动到倒数第k个节点
-            while (current.next != null) {
-                right = right.next;
-                current = current.next;
-            }
-            //交换两个节点的值
-            int temp = left.val;
-            left.val = right.val;
-            right.val = temp;
-            return head;
+    public ListNode swapNodes(ListNode head, int k) {
+        ListNode left = head;//正数第k个节点
+        ListNode right = head;//倒数第k个节点
+        //利用循环找到正数第k个节点
+        for (int i = 1; i < k; i++) {
+            left = left.next;
         }
+        //定义另一个变量current保存left指针，因为不能移动left指针
+        ListNode current = left;
+        //让两个指针一起移动，当正数第k个指针移动到链表末尾时，right指针刚好移动到倒数第k个节点
+        while (current.next != null) {
+            right = right.next;
+            current = current.next;
+        }
+        //交换两个节点的值
+        int temp = left.val;
+        left.val = right.val;
+        right.val = temp;
+        return head;
     }
 }
+
