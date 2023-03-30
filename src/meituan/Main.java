@@ -45,7 +45,7 @@ class Main {
             int count = 1; // 包括当前敌人自身在内的数量
             for (int j = i + 1; j < n; j++) { // 从当前敌人的下一个敌人开始遍历
                 Point p2 = points.get(j);
-                if (p2.x - p1.x > a) { // 如果当前敌人与下一个敌人之间的横向距离已经大于a，跳出循环
+                if (Math.abs(p2.x - p1.x) > a) { // 如果当前敌人与下一个敌人之间的横向距离已经大于a，跳出循环
                     break;
                 }
                 if (Math.abs(p2.y - p1.y) <= b) { // 如果当前敌人与下一个敌人之间的纵向距离小于等于b，计数器加1
