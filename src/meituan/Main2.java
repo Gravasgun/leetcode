@@ -22,28 +22,30 @@ import java.util.*;
  * <p>
  * 输出描述：一行，一个整数，表示选取的彩带的最大长度。
  */
+import java.util.*;
+
 public class Main2 {
     public static void main(String[] args) {
-        Set<Integer> set = new HashSet<>();
+        Set<Integer> set = new HashSet<>(); // 用于存放窗口内不同的颜色
         Scanner input = new Scanner(System.in);
-        int length = input.nextInt();
-        int count = input.nextInt();
+        int length = input.nextInt(); // 彩带的长度
+        int count = input.nextInt(); // 截取的彩带中不同颜色的最大数量
         List<Integer> list = new ArrayList<>();
         for (int i = 0; i < length; i++) {
             list.add(input.nextInt());
         }
-        int result = 0;
-        for (int left = 0; left < list.size() - 1; left++) {
-            set.clear();
-            set.add(list.get(left));
-            for (int temp = left + 1; temp < list.size(); temp++) {
-                set.add(list.get(temp));
-                if (set.size() == count + 1) {
-                    result = Math.max(result, temp - left);
+        int result = 0; // 最终结果
+        for (int left = 0; left < list.size() - 1; left++) { // 枚举左端点
+            set.clear(); // 清空集合，准备处理下一个窗口
+            set.add(list.get(left)); // 加入左端点的颜色
+            for (int temp = left + 1; temp < list.size(); temp++) { // 枚举右端点
+                set.add(list.get(temp)); // 加入右端点的颜色
+                if (set.size() == count + 1) { // 如果窗口中不同的颜色数量超过了k，则停止右移
+                    result = Math.max(result, temp - left); // 记录当前窗口的长度
                     break;
                 }
             }
         }
-        System.out.println(result);
+        System.out.println(result); // 输出结果
     }
 }
