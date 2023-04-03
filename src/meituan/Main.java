@@ -36,6 +36,7 @@ class Main {
             int y = scanner.nextInt();
             points.add(new Point(x, y));
         }
+
         // 对敌人按照横坐标升序排序
         Collections.sort(points, (p1, p2) -> p1.x - p2.x);
         int maxCount = 0; // 记录最大敌人数量
