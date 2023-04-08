@@ -2,6 +2,7 @@ package leetcode.tree;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 /**
  * 144.二叉树的前序遍历
@@ -10,12 +11,13 @@ import java.util.List;
 public class Leetcode_144 {
 
     /**
+     * 方法一：递归
      * 对给定的二叉树执行先序遍历，并返回遍历结果。
      *
      * @param root 给定的二叉树根节点
      * @return 先序遍历结果
      */
-    public List<Integer> preorderTraversal(TreeNode root) {
+    public List<Integer> preorderTraversalMethodOne(TreeNode root) {
         // 创建一个ArrayList对象，用于存放遍历结果
         List<Integer> list = new ArrayList<>();
         // 调用preOrder方法，执行先序遍历
@@ -41,5 +43,39 @@ public class Leetcode_144 {
         preOrder(temp.left, list);
         // 递归遍历当前节点的右子树
         preOrder(temp.right, list);
+    }
+
+    /**
+     * 方法二：迭代
+     * @param root 根节点
+     * @return list 用于存放遍历结果的List对象
+     */
+    public List<Integer> preorderTraversalMethodTwo(TreeNode root) {
+        // 创建一个ArrayList对象，用于存放遍历结果
+        List<Integer> list = new ArrayList<>();
+        // 创建一个栈对象，用于辅助实现遍历
+        Stack<TreeNode> stack = new Stack<>();
+        // 如果二叉树为空，直接返回空列表
+        if (root == null) {
+            return list;
+        }
+        // 将二叉树的根节点压入栈中
+        stack.push(root);
+        // 循环遍历栈中的节点
+        while (!stack.isEmpty()) {
+            // 取出栈顶节点，并将其值加入List对象中
+            TreeNode node = stack.pop();
+            list.add(node.val);
+            // 如果该节点有右子树，则将其右子树压入栈中
+            if (node.right != null) {
+                stack.push(node.right);
+            }
+            // 如果该节点有左子树，则将其左子树压入栈中
+            if (node.left != null) {
+                stack.push(node.left);
+            }
+        }
+        // 返回遍历结果
+        return list;
     }
 }
