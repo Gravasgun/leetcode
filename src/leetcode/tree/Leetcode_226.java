@@ -2,6 +2,7 @@ package leetcode.tree;
 
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Stack;
 
 /**
  * 226.翻转二叉树
@@ -11,6 +12,7 @@ public class Leetcode_226 {
     /**
      * 方法一：递归
      * 使用前序或者后续都可以
+     *
      * @param root
      * @return
      */
@@ -34,6 +36,7 @@ public class Leetcode_226 {
 
     /**
      * 方法二：广度优先搜索
+     *
      * @param root
      * @return
      */
@@ -66,6 +69,42 @@ public class Leetcode_226 {
                 if (temp.right != null) {
                     queue.offer(temp.right);
                 }
+            }
+        }
+        // 返回翻转后的树的根节点
+        return root;
+    }
+
+    /**
+     * 方法三：迭代法
+     *
+     * @param root
+     * @return
+     */
+    public TreeNode invertTreeMethodThree(TreeNode root) {
+        // 如果根节点为空，直接返回null
+        if (root == null) {
+            return null;
+        }
+        // 创建一个栈，用于存储待遍历的节点
+        Stack<TreeNode> stack = new Stack<>();
+        // 将根节点加入栈
+        TreeNode temp = root;
+        stack.push(temp);
+        while (!stack.isEmpty()) {
+            // 取出栈顶节点
+            temp = stack.pop();
+            // 交换当前节点的左右子节点
+            TreeNode current = temp.left;
+            temp.left = temp.right;
+            temp.right = current;
+            // 如果右子节点不为空，将其加入栈
+            if (temp.right != null) {
+                stack.push(temp.right);
+            }
+            // 如果左子节点不为空，将其加入栈
+            if (temp.left != null) {
+                stack.push(temp.left);
             }
         }
         // 返回翻转后的树的根节点
