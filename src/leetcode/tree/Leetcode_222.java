@@ -11,7 +11,13 @@ import java.util.Queue;
  * 完全二叉树的定义如下：在完全二叉树中，除了最底层节点可能没填满外，其余每层节点数都达到最大值，并且最下面一层的节点都集中在该层最左边的若干位置。若最底层为第 h 层，则该层包含1~ 2h个节点。
  */
 public class Leetcode_222 {
-    public int countNodes(TreeNode root) {
+    /**
+     * 方法一：广度优先遍历(层序遍历)
+     *
+     * @param root
+     * @return
+     */
+    public int countNodesMethodOne(TreeNode root) {
         // 1. 如果根节点为空，直接返回0。
         if (root == null) {
             return 0;
@@ -36,5 +42,23 @@ public class Leetcode_222 {
             result += list.size(); // 将当前层的节点数加到计数器中
         }
         return result; // 返回节点总数
+    }
+
+    /**
+     * 方法二：深度优先搜索(递归)
+     * @param root
+     * @return
+     */
+    public int countNodesMethodTwo(TreeNode root) {
+        // 如果根节点为空，直接返回 0，表示节点数为 0
+        if (root == null) {
+            return 0;
+        }
+        // 递归计算左子树节点数
+        int leftNum = countNodesMethodTwo(root.left);
+        // 递归计算右子树节点数
+        int rightNum = countNodesMethodTwo(root.right);
+        // 返回左子树节点数、右子树节点数和根节点（1）的和
+        return leftNum + rightNum + 1;
     }
 }
