@@ -10,7 +10,12 @@ import java.util.Queue;
  * 说明: 叶子节点是指没有子节点的节点。
  */
 public class Leetcode_104 {
-    public int maxDepth(TreeNode root) {
+    /**
+     * 方法一：广度优先遍历，层序遍历
+     * @param root
+     * @return
+     */
+    public int maxDepthMethodOne(TreeNode root) {
         int result = 0; // 初始化深度为0
         Queue<TreeNode> queue = new LinkedList<>(); // 创建一个队列用于遍历树
         if (root == null) { // 特判：如果根节点为空，直接返回0
@@ -32,5 +37,25 @@ public class Leetcode_104 {
             result++; // 每次循环结束，深度加1
         }
         return result; // 最后返回深度
+    }
+
+    /**
+     * 方法二：深度优先遍历，递归
+     * @param root
+     * @return
+     */
+    public int maxDepthMethodTwo(TreeNode root) {
+        return maxHeight(root); // 返回二叉树的最大深度
+    }
+
+    // 计算二叉树中每个节点的高度，并返回二叉树的最大高度
+    private int maxHeight(TreeNode temp) {
+        if (temp == null) { // 如果当前节点为null，则返回0，递归终止条件
+            return 0;
+        }
+        int leftHeight = maxHeight(temp.left); // 计算左子树的高度
+        int rightHeight = maxHeight(temp.right); // 计算右子树的高度
+        int height = 1 + Math.max(leftHeight, rightHeight); // 当前节点的高度为左右子树中更大的高度再加上1
+        return height; // 返回当前节点的高度
     }
 }
