@@ -46,6 +46,7 @@ public class Leetcode_222 {
 
     /**
      * 方法二：深度优先搜索(递归)
+     *
      * @param root
      * @return
      */
@@ -61,4 +62,35 @@ public class Leetcode_222 {
         // 返回左子树节点数、右子树节点数和根节点（1）的和
         return leftNum + rightNum + 1;
     }
+
+    /**
+     * 方法三：利用满二叉树的特性
+     *
+     * @param root
+     * @return
+     */
+    public int countNodesMethodThree(TreeNode root) {
+        if (root == null) {  // 如果根节点为空，返回0
+            return 0;
+        }
+        TreeNode left = root.left;  // 获取当前节点的左节点
+        TreeNode right = root.right;  // 获取当前节点的右节点
+        int leftCount = 0;  // 左子树深度
+        int rightCount = 0;  // 右子树深度
+        while (left != null) {  // 循环计算左子树深度
+            left = left.left;
+            leftCount++;
+        }
+        while (right != null) {  // 循环计算右子树深度
+            right = right.right;
+            rightCount++;
+        }
+        if (leftCount == rightCount) {  // 如果左右子树深度相等
+            return (2 << leftCount) - 1;  // 完全二叉树节点数公式
+        }
+        int leftNum = countNodesMethodThree(root.left);  // 递归计算左子树节点数
+        int rightNum = countNodesMethodThree(root.right);  // 递归计算右子树节点数
+        return leftNum + rightNum + 1;  // 返回总节点数
+    }
+
 }
