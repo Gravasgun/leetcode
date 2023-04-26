@@ -1,8 +1,6 @@
 package leetcode.tree;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 
 /**
  * 559.N叉树的最大深度
@@ -28,7 +26,12 @@ public class Leetcode_559 {
         }
     }
 
-    public int maxDepth(Node root) {
+    /**
+     * 方法一：层序遍历(广度优先)
+     * @param root
+     * @return
+     */
+    public int maxDepthMethodOne(Node root) {
         // 判断根节点是否为空，若为空则返回0
         if (root == null) {
             return 0;
@@ -59,5 +62,30 @@ public class Leetcode_559 {
         }
         // 返回最大深度
         return result;
+    }
+
+    /**
+     * 方法二：递归(深度优先)
+     * @param root
+     * @return
+     */
+    public int maxDepthMethodTwo(Node root) {
+        // 判断根节点是否为空，若为空则返回0
+        if (root == null) {
+            return 0;
+        }
+        // 获取当前节点的所有子节点
+        List<Node> children = root.children;
+        // 定义一个变量来存储每个子节点的深度，初始值为0
+        int result = 0;
+        // 遍历每个子节点
+        for (Node node : children) {
+            // 递归调用maxDepthMethodTwo方法来计算子节点的深度
+            int temp = maxDepthMethodTwo(node);
+            // 取所有子节点中深度最大的一个作为当前节点的深度
+            result = Math.max(result, temp);
+        }
+        // 返回当前节点的深度（当前节点的深度等于最深子节点的深度加1）
+        return 1 + result;
     }
 }
