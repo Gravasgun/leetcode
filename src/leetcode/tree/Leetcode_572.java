@@ -13,8 +13,16 @@ public class Leetcode_572 {
         if (root == null) {
             return false;
         }
-        // 判断当前的两棵树是否相同，再递归比较其中一颗树的左子树和左子树与另一棵树是否相同
-        return isSameTree(root, subRoot) || isSubtree(root.left, subRoot) || isSubtree(root.right, subRoot);
+        // 判断当前的两棵树是否相同
+        boolean isSameTree = isSameTree(root, subRoot);
+        if (isSameTree) {
+            return true;
+        } else {
+            //再递归比较其中一颗树的左子树和左子树与另一棵树是否相同
+            boolean isLeftSubTree = isSubtree(root.left, subRoot);
+            boolean isRightSubTree = isSubtree(root.right, subRoot);
+            return isLeftSubTree || isRightSubTree;
+        }
     }
 
     public boolean isSameTree(TreeNode p, TreeNode q) {
