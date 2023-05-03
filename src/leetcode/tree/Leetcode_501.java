@@ -13,7 +13,12 @@ import java.util.stream.Collectors;
  * 左子树和右子树都是二叉搜索树
  */
 public class Leetcode_501 {
-    public int[] findMode(TreeNode root) {
+    /**
+     * 方法一：暴力
+     * @param root
+     * @return
+     */
+    public int[] findModeMethodOne(TreeNode root) {
         // 定义一个 List 存放二叉树的中序遍历结果
         List<Integer> list = new ArrayList<>();
         // 对二叉树进行中序遍历，并将遍历结果存放到 list 中
@@ -42,7 +47,7 @@ public class Leetcode_501 {
         for (int i = 1; i < sortedList.size(); i++) {
             if (sortedList.get(i).getValue() == sortedList.get(i - 1).getValue()) {
                 result.add(sortedList.get(i).getKey());
-            }else {
+            } else {
                 break;
             }
         }
@@ -52,6 +57,7 @@ public class Leetcode_501 {
 
     /**
      * 中序遍历二叉树
+     *
      * @param root 二叉树的根节点
      * @param list 存放遍历结果的 List
      * @return 返回遍历结果
@@ -64,5 +70,46 @@ public class Leetcode_501 {
         list.add(root.val);
         inorder(root.right, list);
         return list;
+    }
+
+    /**
+     * 方法二：递归
+     */
+    List<Integer> resultList; // 存储众数的列表
+    int count; // 当前数字的出现次数
+    int maxCount; // 出现次数最大值
+    TreeNode pre; // 上一个遍历到的节点
+
+    public int[] findModeMethodTwo(TreeNode root) { // 查找二叉搜索树的众数
+        resultList = new ArrayList<>();
+        count = 0;
+        maxCount = 0;
+        inorder(root); // 中序遍历二叉树
+        int[] resultNums = new int[resultList.size()];
+        for (int i = 0; i < resultNums.length; i++) { // 将众数转化为数组返回
+            resultNums[i] = resultList.get(i);
+        }
+        return resultNums;
+    }
+
+    private void inorder(TreeNode temp) { // 中序遍历
+        if (temp == null) { // 如果节点为空，返回
+            return;
+        }
+        inorder(temp.left); // 遍历左子树
+        if (pre == null || pre.val != temp.val) { // 当前节点值与前一个节点值不同
+            count = 1; // 重置计数器
+        } else { // 当前节点值与前一个节点值相同
+            count++; // 计数器加一
+        }
+        if (count > maxCount) { // 当前数字出现次数超过了历史最大值
+            resultList.clear(); // 清空列表
+            resultList.add(temp.val); // 添加当前数字到列表中
+            maxCount = count; // 更新历史最大值
+        } else if (count == maxCount) { // 当前数字出现次数等于历史最大值
+            resultList.add(temp.val); // 添加当前数字到列表中
+        }
+        pre = temp; // 更新上一个遍历到的节点
+        inorder(temp.right); // 遍历右子树
     }
 }
