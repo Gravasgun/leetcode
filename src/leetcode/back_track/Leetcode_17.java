@@ -28,6 +28,7 @@ public class Leetcode_17 {
             result.add(sb.toString());
             return;
         }
+        // digits.charAt(index) - '0' 的操作将字符转换为相应的数字。字符类型可以与整数类型进行运算，通过减去字符 '0' 的 ASCII 值，可以得到对应的数字。
         String str = numString[digits.charAt(index) - '0']; // 获取当前数字对应的字母集合
         for (int i = 0; i < str.length(); i++) {
             sb.append(str.charAt(i)); // 将当前字母添加到字符串构建器中
