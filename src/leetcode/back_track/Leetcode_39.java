@@ -14,7 +14,6 @@ import java.util.List;
 public class Leetcode_39 {
     List<List<Integer>> result = new ArrayList<>(); // 存储最终结果的列表
     List<Integer> paths = new ArrayList<>(); // 存储当前组合的路径
-    int sum; // 当前路径的和
 
     public List<List<Integer>> combinationSum(int[] candidates, int target) {
         if (candidates == null || candidates.length == 0) {
@@ -26,11 +25,12 @@ public class Leetcode_39 {
     }
 
     private void backTrack(int[] candidates, int target, int startIndex) {
-        if (sum == target) {
+        int total = paths.stream().mapToInt(Integer::intValue).sum();
+        if (total == target) {
             result.add(new ArrayList<>(paths)); // 当前路径的和等于目标值，将当前路径添加到结果列表中
             return; // 返回上一层递归
         }
-        if (sum > target) {
+        if (total > target) {
             return; // 当前路径的和已经大于目标值，终止当前路径的搜索
         }
 
@@ -39,11 +39,10 @@ public class Leetcode_39 {
                 continue; // 跳过相同的数字，避免生成重复的组合
             }
             paths.add(candidates[i]); // 将当前数字加入路径中
-            sum += candidates[i]; // 更新当前路径的和
+            total += candidates[i]; // 更新当前路径的和
             backTrack(candidates, target, i); // 递归调用，继续搜索下一个数字
-            sum -= candidates[i]; // 恢复当前路径的和，准备搜索其他分支
+            total -= candidates[i]; // 恢复当前路径的和，准备搜索其他分支
             paths.remove(paths.size() - 1); // 移除当前数字，回溯到上一层
         }
     }
-
 }
