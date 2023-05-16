@@ -27,9 +27,8 @@ public class Leetcode_131 {
         }
 
         for (int i = startIndex; i < s.length(); i++) {
-            System.out.println("startIndex=" + startIndex + " i=" + i + " sub=" + s.substring(startIndex, i + 1));
             if (isPalindrome(s, startIndex, i)) { // 如果当前子串是回文串
-                paths.add(s.substring(startIndex, i + 1)); // 将回文子串添加到当前分割方案中
+                paths.add(s.substring(startIndex, i + 1)); // 将[0,i]回文子串添加到当前分割方案中
                 backTrack(s, i + 1); // 递归处理剩余部分
                 paths.remove(paths.size() - 1); // 回溯，移除最后一个回文子串，尝试其他分割方案
             }
@@ -37,7 +36,7 @@ public class Leetcode_131 {
     }
 
     private boolean isPalindrome(String s, int startIndex, int endIndex) {
-        for (int i = startIndex, j = endIndex; j > i; j--, i++) {
+        for (int i = startIndex, j = endIndex; i < j; i++, j--) {
             if (s.charAt(i) != s.charAt(j)) { // 检查回文性质：对称位置字符相等
                 return false; // 不满足回文条件，返回false
             }
