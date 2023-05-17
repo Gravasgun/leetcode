@@ -21,7 +21,6 @@ public class Leetcode_53 {
                 sum = 0; // 如果 sum 小于等于 0，则将 sum 重置为 0，因为负数对后续子数组的和只会产生负面影响，将其舍弃
             }
         }
-
         return result; // 返回最大子序和
     }
 }
