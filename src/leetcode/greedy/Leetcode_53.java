@@ -6,7 +6,13 @@ package leetcode.greedy;
  * 子数组 是数组中的一个连续部分。
  */
 public class Leetcode_53 {
-    public int maxSubArray(int[] nums) {
+    /**
+     * 方法一：贪心
+     *
+     * @param nums
+     * @return
+     */
+    public int maxSubArrayMethodOne(int[] nums) {
         if (nums == null || nums.length == 0) {
             return 0;
         }
@@ -22,5 +28,26 @@ public class Leetcode_53 {
             }
         }
         return result; // 返回最大子序和
+    }
+
+    /**
+     * 方法二：暴力解法
+     *
+     * @param nums
+     * @return
+     */
+    public int maxSubArrayMethodTwo(int[] nums) {
+        if (nums == null || nums.length == 0) {
+            return 0;
+        }
+        int result = Integer.MIN_VALUE;
+        for (int i = 0; i < nums.length; i++) {
+            int temp = 0;
+            for (int j = i; j < nums.length; j++) {
+                temp += nums[j];
+                result = Math.max(temp, result);
+            }
+        }
+        return result;
     }
 }
