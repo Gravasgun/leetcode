@@ -10,6 +10,8 @@ import java.util.Arrays;
  * 以这种方式修改数组后，返回数组 可能的最大和 。
  */
 public class Leetcode_1005 {
+    // 局部最优：让绝对值大的负数变为正数，当前数值达到最大
+    // 全局最优：整个数组和达到最大
     public int largestSumAfterKNegations(int[] nums, int k) {
         Arrays.sort(nums); // 对数组进行排序
         for (int i = 0; i < nums.length; i++) {
