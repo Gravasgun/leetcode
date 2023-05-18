@@ -37,17 +37,25 @@ public class Leetcode_53 {
      * @return
      */
     public int maxSubArrayMethodTwo(int[] nums) {
+        // 检查数组是否为空或长度为零
         if (nums == null || nums.length == 0) {
             return 0;
         }
+        // 初始化最大和为整型最小值
         int result = Integer.MIN_VALUE;
+        // 外部循环遍历数组元素
         for (int i = 0; i < nums.length; i++) {
+            // 临时变量用于计算当前子数组的和
             int temp = 0;
+            // 内部循环遍历从当前位置到数组末尾的子数组
             for (int j = i; j < nums.length; j++) {
+                // 累加当前子数组的元素到临时变量
                 temp += nums[j];
+                // 更新最大和为临时变量和当前已知的最大和中的较大值
                 result = Math.max(temp, result);
             }
         }
+        // 返回最大和
         return result;
     }
 }
