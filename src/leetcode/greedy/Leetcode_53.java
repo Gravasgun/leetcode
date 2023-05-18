@@ -8,7 +8,8 @@ package leetcode.greedy;
 public class Leetcode_53 {
     /**
      * 方法一：贪心
-     *
+     * 局部最优：当前“连续和”为负数的时候立刻放弃，从下一个元素重新计算“连续和”，因为负数加上下一个元素 “连续和”只会越来越小
+     * 全局最优：选取最大“连续和”
      * @param nums
      * @return
      */
