@@ -9,6 +9,9 @@ package leetcode.greedy;
  * 返回到达 nums[n - 1] 的最小跳跃次数。生成的测试用例可以到达 nums[n - 1]。
  */
 public class Leetcode_45 {
+    // 本题解题关键在于：以最小的步数增加最大的覆盖范围，直到覆盖范围覆盖了终点
+    // 局部最优：求当前这步的最大覆盖，那么尽可能多走，到达覆盖范围的终点，只需要一步
+    // 全局最优：达到终点，步数最少
     public int jump(int[] nums) {
         // 如果数组只有一个元素，则不需要跳跃，步数为0
         if (nums.length == 1) {
