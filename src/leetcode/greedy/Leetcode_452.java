@@ -12,6 +12,7 @@ import java.util.Arrays;
  */
 public class Leetcode_452 {
     public int findMinArrowShots(int[][] points) {
+        // points 不为空至少需要一支箭
         int count = 0;
         // 按照气球的起始坐标进行排序
         Arrays.sort(points, (a, b) -> Integer.compare(a[0], b[0]));
@@ -22,6 +23,10 @@ public class Leetcode_452 {
             } else {
                 // 当前气球和前一个气球有重叠部分，更新当前气球的结束坐标为两个气球的较小值
                 // 确保不会戳破与当前气球后续气球之间的重叠部分，从而避免产生不必要的重叠
+                // 假设气球1[1,6] 气球2[2,8] 气球3[7，12] 气球1和气球2会有重叠，且气球3与气球2也有重叠
+                // 那如果现在子弹从x=8的时候进入，只能射到气球2和气球3，射不到气球1
+                // 因为是从前往后遍历，先把气球1和气球2比较过了，count也加过了，所以在遍历到气球3的时候
+                // 就不能让气球2与气球3有重叠的部分，这样count就会多加一次了
                 points[i][1] = Math.min(points[i][1], points[i - 1][1]);
             }
         }
