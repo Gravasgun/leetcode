@@ -13,7 +13,7 @@ import java.util.Arrays;
 public class Leetcode_452 {
     public int findMinArrowShots(int[][] points) {
         // points 不为空至少需要一支箭
-        int count = 0;
+        int count = 1;
         // 按照气球的起始坐标进行排序
         Arrays.sort(points, (a, b) -> Integer.compare(a[0], b[0]));
         for (int i = 1; i < points.length; i++) {
