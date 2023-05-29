@@ -12,40 +12,22 @@ public class Leetcode_63 {
         // 创建dp数组
         // dp[i][j] ：表示从（0 ，0）出发，到(i, j) 有dp[i][j]条不同的路径
         int[][] result = new int[obstacleGrid.length][obstacleGrid[0].length];
-        int colIndex = 0;
         // 处理第一行
         for (int i = 0; i < obstacleGrid[0].length; i++) {
-            // 第一行有障碍物，记录下标
             if (obstacleGrid[0][i] == 1) {
-                colIndex = i;
                 break;
             } else {
                 // 第一行没有障碍物，设置路径数量为1
                 result[0][i] = 1;
             }
         }
-        // 如果第一行存在障碍物，则之后的格子都无法到达，将其路径数量设为0
-        if (colIndex != 0) {
-            for (int i = colIndex; i < obstacleGrid[0].length; i++) {
-                result[0][i] = 0;
-            }
-        }
-        int rowIndex = 0;
         // 处理第一列
         for (int i = 0; i < obstacleGrid.length; i++) {
             if (obstacleGrid[i][0] == 1) {
-                // 第一列有障碍物，记录下标
-                rowIndex = i;
                 break;
             } else {
                 // 第一列没有障碍物，设置路径数量为1
                 result[i][0] = 1;
-            }
-        }
-        // 如果第一列存在障碍物，则之后的格子都无法到达，将其路径数量设为0
-        if (rowIndex != 0) {
-            for (int i = rowIndex; i < obstacleGrid.length; i++) {
-                result[i][0] = 0;
             }
         }
         // 动态规划计算其余格子的路径数量
