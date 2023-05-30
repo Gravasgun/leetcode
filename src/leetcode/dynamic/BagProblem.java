@@ -23,7 +23,6 @@ public class BagProblem {
 
     private static void testBagProblem(int[] weights, int[] values, int bagSize) {
         // 创建dp数组 dp[i][j] 表示从下标为[0-i]的物品里任意取，放进容量为j的背包，价值总和最大是多少
-
         int[][] result = new int[weights.length][bagSize + 1];
         // 初始化第一行，表示只考虑第一个物品时，背包容量从1到bagSize的情况下的最大价值
         for (int i = weights[0]; i < result[0].length; i++) {
