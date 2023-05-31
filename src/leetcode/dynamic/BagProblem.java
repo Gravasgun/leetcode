@@ -18,9 +18,41 @@ public class BagProblem {
         // 背包的最大容量
         int bagSize = 4;
         // 动态规划方法
-        testBagProblem(weights, values, bagSize);
+        //testBagProblem(weights, values, bagSize);
+        testBagProblem2(weights, values, bagSize);
     }
 
+    /**
+     * 一维数组解决01背包问题
+     *
+     * @param weights 物品的重量
+     * @param values  物品的价值
+     * @param bagSize 背包的最大容量
+     */
+    private static void testBagProblem2(int[] weights, int[] values, int bagSize) {
+        // 创建dp数组 含义：容量为j的背包的最大价值为dp[j]
+        int[] result = new int[bagSize + 1];
+        // 初始化dp数组 只要保证初始值不会大于动态规划所得到的值就可以
+        result[0] = 0;
+        // 先遍历物品再遍历背包 不能颠倒 如果颠倒 那么背包中只能添加一个物品
+        for (int i = 0; i < weights.length; i++) {
+            // 倒叙遍历背包的容量，目的是保证物品不会被重复添加
+            for (int j = bagSize; j >= weights[i]; j--) {
+                result[j] = Math.max(result[j], result[j - weights[i]] + values[i]);
+            }
+        }
+        //遍历dp数组
+        for (int i = 0; i < result.length; i++) {
+            System.out.print(result[i] + " ");
+        }
+    }
+    /**
+     * 二维数组解决01背包问题
+     *
+     * @param weights 物品的重量
+     * @param values  物品的价值
+     * @param bagSize 背包的最大容量
+     */
     private static void testBagProblem(int[] weights, int[] values, int bagSize) {
         // 创建dp数组 dp[i][j] 表示从下标为[0-i]的物品里任意取，放进容量为j的背包，价值总和最大是多少
         int[][] result = new int[weights.length][bagSize + 1];
