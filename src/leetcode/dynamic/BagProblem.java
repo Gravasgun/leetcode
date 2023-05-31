@@ -9,6 +9,7 @@ package leetcode.dynamic;
  * 每个物品只有一个副本可用。
  * 背包只能装下一定重量的物品，超过背包容量的物品无法放入。
  */
+
 public class BagProblem {
     public static void main(String[] args) {
         // 物品的重量
@@ -46,6 +47,7 @@ public class BagProblem {
             System.out.print(result[i] + " ");
         }
     }
+
     /**
      * 二维数组解决01背包问题
      *
