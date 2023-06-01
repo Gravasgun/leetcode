@@ -14,7 +14,7 @@ public class Leetcode_474 {
         for (String s : strs) {
             // 记录字符串中零的数量，相当于重量
             int zeroNum = 0;
-            // 记录字符串中一的数量，相当与重量
+            // 记录字符串中一的数量，相当于重量
             int oneNum = 0;
             // 统计字符串中零和一的数量
             for (int i = 0; i < s.length(); i++) {
