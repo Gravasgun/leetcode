@@ -7,6 +7,13 @@ package leetcode.dynamic;
  * 如果 x 的所有元素也是 y 的元素，集合 x 是集合 y 的 子集
  */
 public class Leetcode_474 {
+    /**
+     * 求：给定背包容量，装满背包最多有多少个物品
+     * @param strs 字符串数组
+     * @param m 0的最多的个数
+     * @param n 1的最多的个数
+     * @return 背包最多有多少个物品
+     */
     public int findMaxForm(String[] strs, int m, int n) {
         // 创建dp数组 最多有i个0和j个1的strs的最大子集的长度为dp[i][j]
         int[][] result = new int[m + 1][n + 1];
