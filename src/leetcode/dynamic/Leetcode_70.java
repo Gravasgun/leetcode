@@ -44,4 +44,35 @@ public class Leetcode_70 {
         // 递归调用：到达第n个阶梯的方法数等于到达第n-1个阶梯的方法数加上到达第n-2个阶梯的方法数
         return climbStairsMethodTwo(n - 1) + climbStairsMethodTwo(n - 2);
     }
+
+    /**
+     * 爬楼梯进阶版
+     * 改为一次可以爬[1,stairs]个阶梯
+     * 此时就是一个完全背包问题 可以爬的阶梯数就是物品 楼顶就是背包容量
+     * @param n 楼梯的阶数
+     * @return 到达楼顶的不同方法数
+     */
+    public int climbStairsMethodThree(int n) {
+        // 创建一个长度为n + 1的dp数组，表示到达台阶数为i的方式数量为dp[i]
+        int[] result = new int[n + 1];
+        // 最大台阶数
+        int stairs = 2;
+        // 将result[0]初始化为1，表示到达台阶数为0的方式数量为1
+        result[0] = 1;
+        // 外层循环遍历result数组
+        for (int i = 1; i < result.length; i++) {
+            // 内层循环遍历1到stairs之间的台阶数
+            for (int j = 1; j <= stairs; j++) {
+                // 判断当前台阶数i是否大于等于j
+                if (i >= j) {
+                    // 如果可以爬上j个台阶，
+                    // 则将result[i]增加result[i - j]
+                    // 表示通过爬j个台阶后到达台阶数i的方式数量
+                    result[i] += result[i - j];
+                }
+            }
+        }
+        // 返回result数组的最后一个元素 表示到达楼梯顶部的不同方式的数量
+        return result[result.length - 1];
+    }
 }
