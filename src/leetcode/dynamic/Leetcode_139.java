@@ -6,11 +6,16 @@ import java.util.List;
  * 139.单词拆分
  * 给你一个字符串 s 和一个字符串列表 wordDict 作为字典。请你判断是否可以利用字典中出现的单词拼接出 s 。
  * 注意：不要求字典中出现的单词全部都使用，并且字典中的单词可以重复使用。
- * <p>
- * 本题可以理解为完全背包问题 字符串的长度为背包容量 字典中的单词为物品(子串)
- * 求：不同物品的排列，能否装满这个背包
  */
 public class Leetcode_139 {
+    /**
+     * 本题可以理解为完全背包问题 字符串的长度为背包容量 字典中的单词为物品(子串)
+     * 求：不同物品的排列，能否装满这个背包
+     *
+     * @param s 字符串(长度为背包容量)
+     * @param wordDict 字典(字典中的每个元素为物品)
+     * @return 如果能由字典中的单词排列成字符串s，返回true
+     */
     public boolean wordBreak(String s, List<String> wordDict) {
         // 创建dp数组，表示长度为i时，如果能由字典中的单词组成，那么dp[i]=true
         boolean[] result = new boolean[s.length() + 1];
