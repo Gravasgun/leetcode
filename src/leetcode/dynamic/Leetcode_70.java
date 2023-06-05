@@ -17,13 +17,14 @@ public class Leetcode_70 {
         if (n <= 2) {
             return n;
         }
-        // 创建一个数组用于存储到达每个阶梯的方法数
-        int[] result = new int[n];
+        // 创建一个dp数组用于存储到达每个阶梯的方法数
+        // dp[i]：爬到第i层楼梯，有dp[i]种方法
+        int[] result = new int[n+1];
         // 初始化前两个阶梯的方法数
-        result[0] = 1;
-        result[1] = 2;
+        result[1] = 1;
+        result[2] = 2;
         // 从第3个阶梯开始计算
-        for (int i = 2; i < result.length; i++) {
+        for (int i = 3; i < result.length; i++) {
             // 到达第i个阶梯的方法数等于到达第i-1个阶梯的方法数加上到达第i-2个阶梯的方法数
             result[i] = result[i - 1] + result[i - 2];
         }
