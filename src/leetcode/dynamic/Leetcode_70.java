@@ -54,21 +54,22 @@ public class Leetcode_70 {
      * @return 到达楼顶的不同方法数
      */
     public int climbStairsMethodThree(int n) {
-        // 创建一个长度为n + 1的dp数组，表示到达台阶数为i的方式数量为dp[i]
+        // 创建一个长度为n + 1的dp数组，dp[i]：爬到有i个台阶的楼顶，有dp[i]种方法
         int[] result = new int[n + 1];
         // 最大台阶数
         int stairs = 2;
         // 将result[0]初始化为1，表示到达台阶数为0的方式数量为1
         result[0] = 1;
-        // 外层循环遍历result数组
+        // 外层循环遍历result数组(背包)
         for (int i = 1; i < result.length; i++) {
-            // 内层循环遍历1到stairs之间的台阶数
+            // 内层循环遍历1到stairs之间的台阶数(物品)
             for (int j = 1; j <= stairs; j++) {
-                // 判断当前台阶数i是否大于等于j
+                // 判断当前台阶数i是否大于等于j(如果背包的容量大于物品的重量)
                 if (i >= j) {
-                    // 如果可以爬上j个台阶，
-                    // 则将result[i]增加result[i - j]
-                    // 表示通过爬j个台阶后到达台阶数i的方式数量
+                    // 求装满背包有几种方法，递推公式一般都是dp[i] += dp[i - nums[j]];
+                    // 本题呢，dp[i]有几种来源，dp[i - 1]，dp[i - 2]，dp[i - 3] 等等，即：dp[i - j]
+                    // 那么递推公式为：dp[i] += dp[i - j]
+                    // 比如背包容量是7，现在的物品的重量是3，那么只需要关注dp[4]为多少即可
                     result[i] += result[i - j];
                 }
             }
