@@ -10,6 +10,7 @@ import java.util.Arrays;
  */
 public class Leetcode_122 {
     /**
+     * 方法一：贪心
      * 假如第0天买入，第3天卖出，那么利润为：prices[3] - prices[0]
      * 相当于(prices[3] - prices[2]) + (prices[2] - prices[1]) + (prices[1] - prices[0])
      * 收集正利润的区间，就是股票买卖的区间，而我们只需要关注最终利润，不需要记录区间
@@ -19,7 +20,7 @@ public class Leetcode_122 {
      * @param prices
      * @return
      */
-    public int maxProfit(int[] prices) {
+    public int maxProfitMethodOne(int[] prices) {
         // 创建一个数组来存储价格差值（利润）
         int[] profit = new int[prices.length - 1];
         // 记录profit数组的索引
@@ -36,5 +37,37 @@ public class Leetcode_122 {
         }
         // 使用流的方式计算profit数组中所有元素的和，即最大利润
         return Arrays.stream(profit).sum();
+    }
+
+    /**
+     * 方法二：动态规划
+     *
+     * @param prices
+     * @return
+     */
+    public int maxProfitMethodTwo(int[] prices) {
+        // 创建一个二维数组来存储结果
+        // result[i][0] 表示在第i天持有股票时的最大利润
+        // result[i][1] 表示在第i天不持有股票时的最大利润
+        int[][] result = new int[prices.length][2];
+        // 初始化第一天的情况
+        result[0][0] = -prices[0];  // 在第一天买入股票，所以利润为负的股票价格
+        result[0][1] = 0;           // 在第一天不买入股票，所以利润为0
+        // 遍历每一天的价格
+        for (int i = 1; i < result.length; i++) {
+            // 计算第i天持有股票时的最大利润
+            // 可能的情况有两种：
+            // 1. 前一天持有股票，今天不卖出，保持不变
+            // 2. 前一天不持有股票，今天买入，利润减去股票价格
+            result[i][0] = Math.max(result[i - 1][1] - prices[i], result[i - 1][0]);
+            // 计算第i天不持有股票时的最大利润
+            // 可能的情况有两种：
+            // 1. 前一天不持有股票，今天保持不变
+            // 2. 前一天持有股票，今天卖出，利润增加股票价格
+            result[i][1] = Math.max(result[i - 1][1], result[i - 1][0] + prices[i]);
+        }
+        // 返回最后一天的最大利润
+        // 最大利润要么是最后一天不持有股票的情况，要么是最后一天持有股票的情况
+        return Math.max(result[result.length - 1][0], result[result.length - 1][1]);
     }
 }
