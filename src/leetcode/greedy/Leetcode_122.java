@@ -64,7 +64,7 @@ public class Leetcode_122 {
             // 可能的情况有两种：
             // 1. 前一天不持有股票，今天保持不变
             // 2. 前一天持有股票，今天卖出，利润增加股票价格
-            result[i][1] = Math.max(result[i - 1][1], result[i - 1][0] + prices[i]);
+            result[i][1] = Math.max(result[i - 1][1], result[i][0] + prices[i]);
         }
         // 返回最后一天的最大利润
         // 最大利润要么是最后一天不持有股票的情况，要么是最后一天持有股票的情况
