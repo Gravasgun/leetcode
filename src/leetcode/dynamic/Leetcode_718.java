@@ -50,6 +50,8 @@ public class Leetcode_718 {
      */
     public int findLengthMethodTwo(int[] nums1, int[] nums2) {
         // 创建二维数组用于记录公共子数组的长度
+        // dp[i][j] ：以下标i - 1为结尾的nums1[i-1]，和以下标j - 1为结尾的nums2[i-2]，最长重复子数组长度为dp[i][j]
+        // 特别注意： “以下标i - 1为结尾的nums1[i-1]” 标明一定是 以nums1[i-1]为结尾的字符串
         int[][] result = new int[nums1.length + 1][nums2.length + 1];
         // 记录最大值
         int max = Integer.MIN_VALUE;
