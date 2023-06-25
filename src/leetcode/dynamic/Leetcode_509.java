@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.dynamic;
 
 public class Leetcode_509 {
     /**
