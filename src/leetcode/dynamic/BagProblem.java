@@ -9,8 +9,8 @@ public class BagProblem {
         // 背包的最大容量
         int bagSize = 4;
         // 动态规划方法
-        testBagProblem(weights, values, bagSize);
-        //testBagProblem2(weights, values, bagSize);
+        //testBagProblem(weights, values, bagSize);
+        testBagProblem2(weights, values, bagSize);
     }
 
     private static void testBagProblem(int[] weights, int[] values, int bagSize) {
@@ -42,8 +42,17 @@ public class BagProblem {
     }
 
     private static void testBagProblem2(int[] weights, int[] values, int bagSize) {
-
+        // result[j]:背包容量为j的最大价值为result[j]
+        int[] result = new int[bagSize + 1];
+        // 先遍历物品 再遍历背包 遍历背包的时候倒序遍历
+        for (int i = 0; i < weights.length; i++) {
+            for (int j = result.length - 1; j >= weights[i]; j--) {
+                result[j] = Math.max(result[j], result[j - weights[i]] + values[i]);
+            }
+        }
+        // 遍历dp数组
+        for (int i = 0; i < result.length; i++) {
+            System.out.print(result[i] + " ");
+        }
     }
-
-
 }
