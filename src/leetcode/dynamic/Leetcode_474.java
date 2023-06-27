@@ -10,7 +10,7 @@ public class Leetcode_474 {
             int oneNum = 0;
             // 统计重量
             for (int i = 0; i < s.length(); i++) {
-                if (s.charAt(i) == 0) {
+                if (s.charAt(i) == '0') {
                     zeroNum++;
                 } else {
                     oneNum++;
