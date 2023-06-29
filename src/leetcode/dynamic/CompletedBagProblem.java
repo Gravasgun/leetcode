@@ -19,7 +19,7 @@ public class CompletedBagProblem {
         int[][] result = new int[weights.length][bagSize + 1];
         // 初始化dp数组的第一行
         for (int i = weights[0]; i < result[0].length; i++) {
-            result[0][i] = values[0];
+            result[0][i] = values[0] * i;
         }
         // 填充dp数组 先遍历物品 再遍历背包
         for (int i = 1; i < weights.length; i++) {
