@@ -13,6 +13,6 @@ public class Leetcode_300 {
                 }
             }
         }
-        return result[result.length - 1];
+        return Arrays.stream(result).max().getAsInt();
     }
 }
