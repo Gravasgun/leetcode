@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Leetcode_40 {
     List<List<Integer>> result = new ArrayList<>();
-    List<Integer> paths = new ArrayList<>();
+    List<Integer> path = new ArrayList<>();
 
     public List<List<Integer>> combinationSum2(int[] candidates, int target) {
         if (candidates == null || candidates.length == 0) {
@@ -18,20 +18,22 @@ public class Leetcode_40 {
     }
 
     private void backTrack(int[] candidates, int target, int startIndex) {
-        if (paths.stream().mapToInt(Integer::intValue).sum() == target) {
-            result.add(new ArrayList<>(paths));
+        int sum = path.stream().mapToInt(Integer::intValue).sum();
+        if (sum == target) {
+            result.add(new ArrayList<>(path));
             return;
         }
-        if (paths.stream().mapToInt(Integer::intValue).sum() > target) {
+        if (sum > target) {
             return;
         }
+
         for (int i = startIndex; i < candidates.length; i++) {
             if (i > startIndex && candidates[i - 1] == candidates[i]) {
                 continue;
             }
-            paths.add(candidates[i]);
+            path.add(candidates[i]);
             backTrack(candidates, target, i + 1);
-            paths.remove(paths.size() - 1);
+            path.remove(path.size() - 1);
         }
     }
 }
