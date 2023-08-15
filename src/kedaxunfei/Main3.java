@@ -1,23 +1,24 @@
 package kedaxunfei;
 
 import java.util.*;
+
 /**
  * 题目描述：
  * 给定两个不含重复元素的整数列表list1和list2，
  * 求出这两个集合中不重复的连续子集的数量，
  * 连续：在原集合中连续
- *
+ * <p>
  * 输入描述：
  * 第一行包含一个整数N，表示list1和list2的长度。
  * 第二行包含N个不重复的整数，表示list1的元素。
  * 第三行包含N个不重复的整数，表示list2的元素。
- *
+ * <p>
  * 输出描述：
  * 输出一个整数，表示满足条件的不同连续子序列的总数。
  */
 
 public class Main3 {
-    static Set<List> set = new HashSet<>();
+    static Set<List<Integer>> set = new HashSet<>();
     static List<Integer> path = new ArrayList<>();
 
     public static void main(String[] args) {
