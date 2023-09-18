@@ -4,6 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * 题目描述：
+ * 给定一个字符串，你需要生成该字符串的所有字符排列并输出。排列是指将字符串中的字符重新排列，得到不同的排列组合。
+ * 输入示例：
+ * 输入: "abc"
+ * 输出示例：
+ * ["abc", "acb", "bac", "bca", "cab", "cba"]
+ */
 public class Main2 {
     static List<List<String>> result = new ArrayList<>();  // 用于存储结果的列表
     static List<String> paths = new ArrayList<>();  // 用于存储当前路径的列表

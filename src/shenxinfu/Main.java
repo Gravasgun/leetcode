@@ -2,7 +2,16 @@ package shenxinfu;
 
 import java.util.*;
 
+/**
+ * 题目描述：
+ * 给定一个字符串，你需要计算这个字符串中不同字符的所有可能组合数目，然后输出组合数。
+ * 输入示例：
+ * abac
+ * 输出示例：
+ * 5 解释：不同字符的组合有 ["a", "b", "c", "ab", "ac"]，共有5种组合。
+ */
 public class Main {
+
     static List<List<String>> result = new ArrayList<>();
     static List<String> path = new ArrayList<>();
 
