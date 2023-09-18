@@ -12,40 +12,50 @@ import java.util.*;
  */
 public class Main {
 
+    // 存储所有组合结果的列表
     static List<List<String>> result = new ArrayList<>();
+    // 存储当前组合路径的列表
     static List<String> path = new ArrayList<>();
 
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         String s = input.next();
-        //System.out.println(s);
+        // 获取字符串中不同字符的子串
         String differentString = getDifferentString(s);
-        //System.out.println(differentString);
+        // 计算不同字符的组合数
         getCombinationNum(differentString.toCharArray());
-        System.out.println(result.size()-1);
+        // 输出组合数（减1是因为空集合也被计算在内）
+        System.out.println(result.size() - 1);
     }
 
+    // 计算组合数的主函数
     private static List<List<String>> getCombinationNum(char[] chars) {
         if (chars == null || chars.length == 0) {
             return result;
         }
+        // 回溯算法生成所有组合
         backTrack(chars, 0);
         return result;
     }
 
+    // 回溯算法的核心函数
     private static void backTrack(char[] chars, int startIndex) {
+        // 将当前组合加入结果列表
         result.add(new ArrayList<>(path));
         if (startIndex >= chars.length) {
             return;
         }
         for (int i = startIndex; i < chars.length; i++) {
-            path.add(String.valueOf(chars[i])); // 将当前元素加入当前子集
-            backTrack(chars, i + 1); // 递归生成下一个子集，起始索引为当前元素的下一个位置
-            path.remove(path.size() - 1); // 回溯操作，将最后一个加入的元素移除，继续生成下一个子集
+            // 将当前元素加入当前子集
+            path.add(String.valueOf(chars[i]));
+            // 递归生成下一个子集，起始索引为当前元素的下一个位置
+            backTrack(chars, i + 1);
+            // 回溯操作，将最后一个加入的元素移除，继续生成下一个子集
+            path.remove(path.size() - 1);
         }
     }
 
-
+    // 获取字符串中不同字符的子串
     private static String getDifferentString(String s) {
         StringBuilder sb = new StringBuilder();
         Set<Character> set = new HashSet<>();

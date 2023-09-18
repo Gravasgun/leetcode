@@ -28,11 +28,28 @@ public class Main3 {
 
     private static int getMaxLength(int[] nums) {
         Set<Integer> set = new HashSet<>();
-        for (int i = 0; i < nums.length; i++) {
-            if (!set.contains(nums[i])){
-                set.add(nums[i]);
+        // 记录最长不重复子数组的长度
+        int maxLength = 0;
+        // 不重复子数组的左边界
+        int left = 0;
+
+        for (int right = 0; right < nums.length; right++) {
+            if (!set.contains(nums[right])) {
+                // 如果当前元素不在集合中，将其加入集合
+                set.add(nums[right]);
+                // 更新最长不重复子数组的长度
+                maxLength = Math.max(maxLength, right - left + 1);
+            } else {
+                // 如果当前元素已经在集合中，需要缩小子数组的范围
+                while (set.contains(nums[right])) {
+                    // 移除左边界元素，直到当前元素不在集合中
+                    set.remove(nums[left]);
+                    left++;
+                }
+                // 将当前元素加入集合
+                set.add(nums[right]);
             }
         }
-        return set.size();
+        return maxLength;
     }
 }

@@ -15,23 +15,29 @@ import java.util.*;
  * 一行，一个整数表示小美使用技能单次可以捕获的最多数量。
  */
 class Main {
-    static class Point { // 定义一个二维坐标点的类
+    // 定义一个二维坐标点的类
+    static class Point {
         int x;
         int y;
-
-        Point(int x, int y) { // 构造函数，用于初始化点的坐标
+        // 构造函数，用于初始化点的坐标
+        Point(int x, int y) {
             this.x = x;
             this.y = y;
         }
     }
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in); // 读取标准输入的Scanner对象
-        int n = scanner.nextInt(); // 敌人的数量
-        int a = scanner.nextInt(); // 敌人之间最大的横向距离
-        int b = scanner.nextInt(); // 敌人之间最大的纵向距离
-        List<Point> points = new ArrayList<>(); // 用于存储敌人的坐标点列表
-        for (int i = 0; i < n; i++) { // 循环读取每个敌人的坐标并添加到列表中
+        Scanner scanner = new Scanner(System.in);
+        // 敌人的数量
+        int n = scanner.nextInt();
+        // 敌人之间最大的横向距离
+        int a = scanner.nextInt();
+        // 敌人之间最大的纵向距离
+        int b = scanner.nextInt();
+        // 用于存储敌人的坐标点列表
+        List<Point> points = new ArrayList<>();
+        // 循环读取每个敌人的坐标并添加到列表中
+        for (int i = 0; i < n; i++) {
             int x = scanner.nextInt();
             int y = scanner.nextInt();
             points.add(new Point(x, y));
@@ -39,21 +45,30 @@ class Main {
 
         // 对敌人按照横坐标升序排序
         Collections.sort(points, (p1, p2) -> p1.x - p2.x);
-        int maxCount = 0; // 记录最大敌人数量
-        for (int i = 0; i < n; i++) { // 循环遍历每个敌人
-            Point p1 = points.get(i); // 当前敌人
-            int count = 1; // 包括当前敌人自身在内的数量
-            for (int j = i + 1; j < n; j++) { // 从当前敌人的下一个敌人开始遍历
+        // 记录最大敌人数量
+        int maxCount = 0;
+        // 循环遍历每个敌人
+        for (int i = 0; i < n; i++) {
+            // 当前敌人
+            Point p1 = points.get(i);
+            // 包括当前敌人自身在内的数量
+            int count = 1;
+            // 从当前敌人的下一个敌人开始遍历
+            for (int j = i + 1; j < n; j++) {
                 Point p2 = points.get(j);
-                if (Math.abs(p2.x - p1.x) > a) { // 如果当前敌人与下一个敌人之间的横向距离已经大于a，跳出循环
+                // 如果当前敌人与下一个敌人之间的横向距离已经大于a，跳出循环
+                if (Math.abs(p2.x - p1.x) > a) {
                     break;
                 }
-                if (Math.abs(p2.y - p1.y) <= b) { // 如果当前敌人与下一个敌人之间的纵向距离小于等于b，计数器加1
+                // 如果当前敌人与下一个敌人之间的纵向距离小于等于b，计数器加1
+                if (Math.abs(p2.y - p1.y) <= b) {
                     count++;
                 }
             }
-            maxCount = Math.max(maxCount, count); // 更新最大敌人数量
+            // 更新最大敌人数量
+            maxCount = Math.max(maxCount, count);
         }
-        System.out.println(maxCount); // 输出最大敌人数量
+        // 输出最大敌人数量
+        System.out.println(maxCount);
     }
 }
